@@ -18,8 +18,8 @@
 ## Instrucciones :page_with_curl:
 La forma correcta para iniciar este proyecto es:
 
-    Importar el actual repositorio con el IDE de su preferencia.
-	Para iniciar la aplicación ejecuté 'gradlew bootRun'
+    1) Importar el actual repositorio con el IDE de su preferencia.
+    2) Para iniciar la aplicación ejecuté 'gradlew bootRun'
 
 ## Aclaración Importante! :warning:
 
