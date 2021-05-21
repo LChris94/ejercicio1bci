@@ -19,7 +19,7 @@
 La forma correcta para iniciar este proyecto es:
 
     Importar el actual repositorio con el IDE de su preferencia.
-    Para iniciar la aplicación ejecuté 'gradlew bootRun'
+	Para iniciar la aplicación ejecuté 'gradlew bootRun'
 
 ## Aclaración Importante! :warning:
 
@@ -31,11 +31,11 @@ Las pruebas unitarias fueron realizadas con JUnit5 por falta de tiempo/experienc
 
 | Metodo HTTP  | URL  | Parametros  | Descripción  | Link  |
 | ------------ | ------------ | ------------ | ------------ | ------------ |
-| GET  | /user/  |   | Trae todos los usuarios del sistema. | [Ver](http://aaa "Ver")  |
-| GET  | /user/  |  id:numerico | Trae un usuario especifico del sistema.  | [Ver](http://aaa "Ver")  |
-| POST  | /user/  |   | Crea un usuario en el sistema.  | [Ver](http://aaa "Ver")  |
-| PUT  | /user/  | id:numerico  | Modifica un usuario del sistema. | [Ver](http://aaa "Ver")  |
-| DELETE  | /user/  | id:numerico  | Elimina un usuario del sistema.  | [Ver](http://aaa "Ver")  |
+| GET  | /user/  |   | Trae todos los usuarios del sistema. | [Ver](https://github.com/LChris94/ejercicio1bci#get-user "Ver")  |
+| GET  | /user/  |  id:numerico | Trae un usuario especifico del sistema.  | [Ver](https://github.com/LChris94/ejercicio1bci#get-useriduser "Ver")  |
+| POST  | /user/  |   | Crea un usuario en el sistema.  | [Ver](https://github.com/LChris94/ejercicio1bci#post-user "Ver")  |
+| PUT  | /user/  | id:numerico  | Modifica un usuario del sistema. | [Ver](https://github.com/LChris94/ejercicio1bci#put-useriduser "Ver")  |
+| DELETE  | /user/  | id:numerico  | Elimina un usuario del sistema.  | [Ver](https://github.com/LChris94/ejercicio1bci#delete-useriduser "Ver")  |
 
 ------------
 
@@ -248,3 +248,8 @@ Status Code 200. Ok
 
 ### Diagrama de Secuencia
 [![DiagSec](https://raw.githubusercontent.com/LChris94/ejercicio1bci/main/diagrams/DiagramSecuence.png "DiagSec")](https://raw.githubusercontent.com/LChris94/ejercicio1bci/main/diagrams/DiagramSecuence.png "DiagSec")
+
+
+
+
+
