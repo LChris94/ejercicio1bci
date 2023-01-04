@@ -169,7 +169,7 @@ Modifica un usuario en el sistema
 ```
 {
     "name": "xxxxx",
-    "email": "xxxx@xxxxxx.cl",
+    "email": "xxxxx@xxxxxx.cl",
     "password": "Xxxxxx00",
     "phones": [
         {
