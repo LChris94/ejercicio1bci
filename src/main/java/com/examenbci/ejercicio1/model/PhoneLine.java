@@ -1,5 +1,8 @@
 package com.examenbci.ejercicio1.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Getter
+@Setter
 @Entity
 public class PhoneLine {
 	
@@ -35,31 +40,5 @@ public class PhoneLine {
 		setCitycode(citycode);
 		setContrycode(contrycode);
 	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getNumber() {
-		return number;
-	}
-	public void setNumber(String number) {
-		this.number = number;
-	}
-	public String getCitycode() {
-		return citycode;
-	}
-	public void setCitycode(String citycode) {
-		this.citycode = citycode;
-	}
-	public String getContrycode() {
-		return contrycode;
-	}
-	public void setContrycode(String contrycode) {
-		this.contrycode = contrycode;
-	}	
-	
-	
+
 }

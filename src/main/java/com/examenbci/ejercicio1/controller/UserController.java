@@ -64,55 +64,46 @@ public class UserController {
     public ResponseEntity<?> deleteUser(@PathVariable(value = "idUser", required = true) long idUser) throws UserNotExistsException {
         User _user = userService.getById(idUser);
     	this.userService.delete(_user);
+		logger.info("Usuario eliminado: {} email: {}", _user.getName(), _user.getEmail());
         return ResponseEntity.ok().build();
     }
     
     
     @PutMapping("{idUser}")
-    public ResponseEntity<?> updateUser(@PathVariable(value = "idUser", required = true) long idUser, @RequestBody RequestUserDTO requestUserDTO) throws UserNotExistsException {
+    public ResponseEntity<?> updateUser(@PathVariable(value = "idUser", required = true) long idUser, @RequestBody RequestUserDTO requestUserDTO) throws UserNotExistsException, InvalidExpresionEmail, InvalidExpresionPassword, EmailAlreadyExistException {
 		ResponseEntity<?> response;
-		try {
 	    User _user = userService.getById(idUser);    	
 		_user.setName(requestUserDTO.getName());
     	_user.setEmail(requestUserDTO.getEmail());
     	_user.setPassword(requestUserDTO.getPassword());
-    	if(Objects.isNull(requestUserDTO.getPhones())) {
+    	if(Objects.nonNull(requestUserDTO.getPhones())) {
     		List<PhoneLine> _list = new ArrayList<PhoneLine>();
     		requestUserDTO.getPhones().forEach(e->_list.add(new PhoneLine(e.getId(), e.getNumber(), e.getCitycode(), e.getContrycode())));
     		_user.setPhones(_list);
     	}    	
     	_user.setModified(LocalDateTime.now());    	
 		userService.save(_user);
-		response = ResponseEntity.ok(_user); 
-		} catch (EmailAlreadyExistException | InvalidExpresionEmail | InvalidExpresionPassword e) {
-			logger.error(e.getMessage());
-			response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-    	return response;  		        
+		logger.info("Usuario modificado: {} email: {}", _user.getName(), _user.getEmail());
+    	return ResponseEntity.ok(_user);
     }
     
     @PostMapping("")
-    public ResponseEntity<?> createUser(@RequestBody RequestUserDTO requestUserDTO) throws InvalidExpresionEmail{
+    public ResponseEntity<?> createUser(@RequestBody RequestUserDTO requestUserDTO) throws InvalidExpresionEmail, EmailAlreadyExistException, InvalidExpresionPassword {
     	ResponseEntity<?> response;
-    	try {
-	    	User _user = new User();
-	    	_user.setName(requestUserDTO.getName());
-	    	_user.setEmail(requestUserDTO.getEmail());
-	    	_user.setPassword(requestUserDTO.getPassword());
-	    	if(Objects.isNull(requestUserDTO.getPhones())) {
-	    		List<PhoneLine> _list = new ArrayList<PhoneLine>();
-	    		requestUserDTO.getPhones().forEach(e->_list.add(new PhoneLine(e.getId(), e.getNumber(), e.getCitycode(), e.getContrycode())));
-	    		_user.setPhones(_list);
-	    	}  
-	        _user.setIsActive(true);
-	        _user.setToken(getJWTToken(requestUserDTO.getName())); 
-			userService.save(_user);
-			response = ResponseEntity.status(HttpStatus.CREATED).body(_user);
-		} catch (EmailAlreadyExistException | InvalidExpresionEmail | InvalidExpresionPassword e) {
-			logger.error(e.getMessage());
-			response = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new MessageError(e.getMessage()));
+		User _user = new User();
+		_user.setName(requestUserDTO.getName());
+		_user.setEmail(requestUserDTO.getEmail());
+		_user.setPassword(requestUserDTO.getPassword());
+		if(Objects.nonNull(requestUserDTO.getPhones())) {
+			List<PhoneLine> _list = new ArrayList<PhoneLine>();
+			requestUserDTO.getPhones().forEach(e->_list.add(new PhoneLine(e.getId(), e.getNumber(), e.getCitycode(), e.getContrycode())));
+			_user.setPhones(_list);
 		}
-		return response;
+		_user.setIsActive(true);
+		_user.setToken(getJWTToken(requestUserDTO.getName()));
+		userService.save(_user);
+		logger.info("Usuario creado: {} email: {}", _user.getName(), _user.getEmail());
+		return ResponseEntity.status(HttpStatus.CREATED).body(_user);
     }
     
     private String getJWTToken(String username) {

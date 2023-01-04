@@ -92,7 +92,7 @@ public class UserControllerTest {
     }
 	
 	@Test
-    public void updateUserTest() throws UserNotExistsException, EmailAlreadyExistException{
+    public void updateUserTest() throws UserNotExistsException, EmailAlreadyExistException, InvalidExpresionPassword, InvalidExpresionEmail {
 		long idUser = 1;
 		User user = createUserOk();
 		RequestUserDTO _userDTO = new RequestUserDTO();
@@ -119,7 +119,7 @@ public class UserControllerTest {
 	
 	
 	@Test
-    public void saveUserTest() throws UserNotExistsException, EmailAlreadyExistException, InvalidExpresionEmail{
+    public void saveUserTest() throws UserNotExistsException, EmailAlreadyExistException, InvalidExpresionEmail, InvalidExpresionPassword {
 		long idUser = 1;
 		User user = createUserOk();
 		RequestUserDTO _userDTO = new RequestUserDTO();
